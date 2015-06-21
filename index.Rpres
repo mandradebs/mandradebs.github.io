@@ -21,7 +21,7 @@ polyroot(c(6,5,1))
 The plot
 ========================================================
 To make the plot, it uses the function *plot* as follows:
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 x<-seq(-5,5,0.01)
 y<-6+5*x+1*x^2
 plot(x,y,type="n")
