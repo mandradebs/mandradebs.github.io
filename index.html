@@ -1,70 +1,564 @@
-<!DOCTYPE html>
+<!--
+Au<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+<head>
+<title>Mandradebs</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="github, ciencia de datos, data sciencia, statistics, estad�stica,
+	lenguajes de programaci�n, programming languages" />
 
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="js/modernizr.custom.97074.js"></script>
+<script src="js/jquery-1.8.3.min.js"></script>
+<!---->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+ <script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+			});
+		});
+	</script>
+<!---->
 
-    <title>Mandradebs.GitHub.io by mandradebs</title>
-  </head>
+</head>	
+<!--banner-->
+<div id="home" class="banner">	 
+	 <div class="header">
+		 <div class="container">
+			 <div class="logo">
+				 <h1><a href="mandradebs.github.io">mandradebs.github.io</a></h1>
+			 </div>
+		 </div>
+	 </div>
+	 <div class="top-menu">
+		 <div class="container">
+			 <nav class="cl-effect-1">
+				<span class="menu"><img src="images/nav-icon.png" alt=""/></span>
+			 <ul>
+				 <li><a class="scroll" href="#home">Home</a></li>
+				 <li><a class="scroll" href="#about">About</a></li>
+				 <li><a class="scroll" href="#skills">Skills</a></li>
+				 <li><a class="scroll" href="#papers">Papers</a></li>
+				 <li><a class="scroll" href="#projects">School Projects</a></li>
+				 <li><a class="scroll" href="#contact">Contact</a></li>				 
+				 <!--<li><a class="scroll" href="#service">Services</a></li>
+				 <li><a class="scroll" href="#gallery">Gallery</a></li>
+				 <li><a class="scroll" href="#skills">Courses</a></li>
+				 <li><a class="scroll" href="#testi">Testimonials</a></li>
+				 <li><a class="scroll" href="#contact">Contact</a></li>-->
+			 </ul>
+			 </nav>
+		 </div>		 
+		 <!-- script-for-menu -->
+		 <script>					
+					$("span.menu").click(function(){
+						$(".top-menu ul").slideToggle("slow" , function(){
+						});
+					});
+		 </script>
+		 <!-- script-for-menu -->	
 
-  <body>
+	 </div>
+	 <div class="banner-info">
+		 <div class="container">
+			 <h2> "Everything has been thought of before, <br> The difficulty is to think of it again" </h2> <h3>Johann Wolfgang von Goethe</h3>
+		 </div>
+	 </div>
+	 <!--
+	 <div class="banner-form">
+		 <div class="container">
+			 <p>Donec sem elit, congue eu pretium in, hendrerit vel purus.</p>
+			 <form>
+				<input type="text" value="" placeholder="Name">
+				<input type="text" value="" placeholder="Telephone">
+				<input type="submit" value="Send">
+			</form>
+		 </div>
+	 </div>
+	 -->
+</div>
+<!---->
+<div id="about" class="about">
+	 <div class="container">		 
+		 <h3 class="abt">About</h3>
+		 <div class="about-top">
+			 <h4>Welcome to my personal GitHub Page.</h4>
+			<p>Hey, my name is Marco Antonio Andrade Barrera.
+			I'm from Mexico. I came to github when I was taking 
+			the Data Science Specialization offered in Coursera 
+			website, provided by professors of Johns Hopkins 
+			University. </p>	
+		 </div>
+		 <div class="about-grids">
+			 <div class="col-md-6 about-grid-info">
+			     <h3>About me</h3>
+			     
+				 <h4>Academic stuff</h4>
+				 <p><b>2014-</b>. He is currently taking the Data Science Specialization 
+				 offered in Coursera website, provided by professors of Johns Hopkins 
+				 University.
+				 </p>
+				 <p><b>2013-</b>. He is currently an 
+				 engineering student at Escuela Superior de 
+				 Ingenir&iacute;a Mec&aacute;nica y El&eacute;ctrica, en el Instituto 
+				 Polit&eacute;cnico Nacional, M&eacute;xico.
+				 </p>
+				 <p><b>2010</b>. Bachelor degree in statistics (B.STAT). He 
+				 graduated from the Departamento de estad&iacute;stica, 
+				 Matem&aacute;tica y C&oacute;mputo at the Universidad Aut&oacute;noma 
+				 Chapingo, M&eacute;xico, in 2010.</p>
+				 
+				 <h4>Hobbies</h4>
+				 <p></p>
+				 
+			 </div>
+			 <div class="col-md-6 about-pic">
+				 <img src="images/img1.jpg" class="img-responsive" alt="" width="70%"/>
+			 </div>
+			 <div class="clearfix"></div>
+		 </div>
+	 </div>
+</div>
+<!---->
+<!--
+<div id="service" class="service">
+	 <div class="container">
+		 <h3 class="ser">Services</h3>
+		 <div class="service-grids">
+			 <div class="service-grid">
+				 <div class="col-md-4 service-pic">
+					 <img src="images/s1.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="col-md-8 service-info">
+					 <h3>Live Support</h3>
+					 <p>Lorem ipsum dolor sit amet, Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer convallis arcu orci, vitae cursus ligula cursus vel.  consectetur adipisicing elit, sed do eiusmod tempor incididunt  ut labore et dolore.Lorem ipsum dolor sit amet,
+					 consectetur adipisicing elit, sed do eiusmod tempor Vivamus sed massa porttitor, lacinia tortor a, luctus Donec sit amet justo sit amet risus malesuada venenatis id ac lacusincididunt ut labore.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor labore.</p>
+				 </div>
+				 <div class="clearfix"></div>
+			 </div>
+			 <div class="service-grid">
+				 <div class="col-md-4 service-pic">
+					 <img src="images/s2.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="col-md-8 service-info">
+					 <h3>Live Support</h3>
+					 <p>Lorem ipsum dolor sit amet, Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer convallis arcu orci, vitae cursus ligula cursus vel.  consectetur adipisicing elit, sed do eiusmod tempor incididunt  ut labore et dolore.Lorem ipsum dolor sit amet,
+					 consectetur adipisicing elit, sed do eiusmod tempor Vivamus sed massa porttitor, lacinia tortor a, luctus Donec sit amet justo sit amet risus malesuada venenatis id ac lacusincididunt ut labore.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor labore.</p>
+				 </div>
+				 <div class="clearfix"></div>
+			 </div>
+			 <div class="service-grid">
+				 <div class="col-md-4 service-pic">
+					 <img src="images/s1.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="col-md-8 service-info">
+					 <h3>Live Support</h3>
+					 <p>Lorem ipsum dolor sit amet, Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer convallis arcu orci, vitae cursus ligula cursus vel.  consectetur adipisicing elit, sed do eiusmod tempor incididunt  ut labore et dolore.Lorem ipsum dolor sit amet,
+					 consectetur adipisicing elit, sed do eiusmod tempor Vivamus sed massa porttitor, lacinia tortor a, luctus Donec sit amet justo sit amet risus malesuada venenatis id ac lacusincididunt ut labore.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor labore.</p>
+				 </div>
+				 <div class="clearfix"></div>
+			 </div>
+		 </div>
+	 </div>
+</div>
+-->
+<!---->
+<!--script-->
+<script src="js/jquery.chocolat.js"></script>		
+		<!--light-box-files -->
+		<script type="text/javascript">
+		$(function() {
+			$('.gallery a').Chocolat();
+		});
+		</script>
+<!--script-->
+<!--
+<div class="gallery" id="gallery">
+		<div class="container">
+			<h3>Gallery</h3>
+			<div class="gallery-grids">
+			<section>
+				<ul id="da-thumbs" class="da-thumbs">
+					<li>
+						<a href="images/g1.jpg" class="b-link-stripe b-animate-go  thickbox">
+							<img src="images/g1.jpg" alt="" />
+							<div>
+								<h5>project</h5>
+								<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="images/g2.jpg" class="b-link-stripe b-animate-go  thickbox">
+							<img src="images/g2.jpg" alt="" />
+							<div>
+								<h5>project</h5>
+								<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="images/g3.jpg" class="b-link-stripe b-animate-go  thickbox">
+							<img src="images/g3.jpg" alt="" />
+							<div>
+								<h5>project</h5>
+								<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="images/g4.jpg" class="b-link-stripe b-animate-go  thickbox">
+							<img src="images/g4.jpg" alt="" />
+							<div>
+								<h5>project</h5>
+								<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>
+							</div>
+						</a>
+					</li>
+					<li>	
+						<a href="images/g5.jpg" class="b-link-stripe b-animate-go  thickbox">
+							<img src="images/g5.jpg" alt="" />
+							<div>
+								<h5>project</h5>
+								<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="images/g6.jpg" class="b-link-stripe b-animate-go  thickbox">
+							<img src="images/g6.jpg" alt="" />
+							<div>
+								<h5>project</h5>
+								<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="images/g7.jpg" class="b-link-stripe b-animate-go  thickbox">
+							<img src="images/g7.jpg" alt="" />
+							<div>
+								<h5>project</h5>
+								<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="images/g8.jpg" class="b-link-stripe b-animate-go  thickbox">
+							<img src="images/g8.jpg" alt="" />
+							<div>
+								<h5>project</h5>
+								<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="images/g9.jpg" class="b-link-stripe b-animate-go  thickbox">
+							<img src="images/g9.jpg" alt="" />
+							<div>
+								<h5>project</h5>
+								<span>non suscipit leo fringilla non suscipit leo fringilla molestie</span>
+							</div>
+						</a>
+					</li>					
+				</ul>
+				<div class="clearfix"> </div>
+			</section>
+			<script type="text/javascript" src="js/jquery.hoverdir.js"></script>	
+		<script type="text/javascript">
+			$(function() {
+			
+				$(' #da-thumbs > li ').each( function() { $(this).hoverdir(); } );
 
-    <header>
-      <div class="container">
-        <h1>Mandradebs.GitHub.io</h1>
-        <h2></h2>
+			});
+		</script>
+        </div>
+	</div>
+</div>
+-->
+<!--//gallery-->
+<div id="skills" class="skills">
+	 <div class="container">
+		 <h3>Software and programming languages</h3>
+		 <ul>
+		 	<li>Statistics. R, SAS, SPSS</li>
+		 	<li>Office. Excel Advanced</li>
+		 	<li>GIS. Quantum Gis and Arcview 3.x (I need an update)</li>
+		 	<li>Web. html, javascript, MySQL, PHP</li>
+		 	<li>Others. C++, Visual Basic, and I took a course of Python for games programming (but I haven't used it so much)</li>
+		 </ul>
+		 <!--
+		 <div class="skill-grids">
+				 <h4>PHP</h4>
+				<div class="progress">			  
+				  <div class="progress-bar progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+					<span class="sr-only">75% Complete</span>
+				  </div>			  
+				</div>
+				 <h4>JS</h4>
+				<div class="progress">			  
+				  <div class="progress-bar progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+					<span class="sr-only">90% Complete</span>
+				  </div>			  
+				</div> 
+				 <h4>C++</h4>
+				<div class="progress">			  
+				  <div class="progress-bar progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+					<span class="sr-only">80% Complete</span>
+				  </div>			  
+				</div>
+				 <h4>R</h4>
+				<div class="progress">			  
+				  <div class="progress-bar progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+					  <span class="sr-only">90% Complete</span>
+					</div>			  
+				</div>
+				<h4>SAS</h4>
+				<div class="progress">			  
+				  <div class="progress-bar progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+					  <span class="sr-only">70% Complete</span>
+					</div>			  
+				</div>
+		 </div>
+		 -->
+	  </div>
+</div>
 
-        <section id="downloads">
-          <a href="https://github.com/mandradebs" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
+<div id="papers" class="skills">
+	 <div class="container">
+	 <h3>Papers</h3>
+	 <ul>
+	 	<li> 		
+	 		Zamudio S&aacute;nchez, Francisco Jos&eacute;, et. al. 2014. <i>Informe estad&iacute;stico sobre desarrollo humano en M&eacute;xico: 1995-2010</i>
+	 		[<i>Statistical report on human development in Mexico: 1995-2010</i>].
+	 		M&eacute;xico, Chapingo. <br>
+	 		<a href="http://www.chapingo.mx/dicifo/demyc/apps/pubs/web/?pid=5&fle=5.pdf" target="_blank">Summary</a>.
+	 		<a href="http://www.chapingo.mx/dicifo/demyc/apps/pubs/web/?pid=4&fle=4.pdf" target="_blank">Executive summary</a>.
+	 		<a href="http://www.chapingo.mx/dicifo/demyc/apps/pubs/web/?pid=3&fle=3.pdf" target="_blank">Full report</a>.	 		
+	 	</li>
+	 	<li>
+	 		<a href="http://portal.chapingo.mx/dicifo/demyc/apps/pubs/web/?pid=2&fle=2.pdf" target="_blank">
+		 		Zamudio S&aacute;nchez, Francisco Jos&eacute;, Roxana Ivette Arana Ovalle, Jos&eacute; Artemio Cadena Meneses y Alejandro Corona Ambriz. 2013.
+		 		<i>Estudio sobre la violencia de g&eacute;nero: la otra cara de la Universidad Aut&oacute;noma Chapingo</i>
+		 		[<i>Study on gender violence: the other face of the Chapingo Autonomous University</i>].
+		 		M&eacute;xico, Chapingo.
+	 		</a>
+	 	</li>
+	 	<li>
+	 		<a href="http://www.researchgate.net/publication/281293678_Violencia_de_gnero_en_el_alumnado_de_la_Universidad_Autnoma_Chapingo" target="_blank">
+	 		Andrade Barrera, Marco Antonio.
+	 		2010.
+	 		<i>Violencia de g&eacute;nero en el alumnado de la Universidad Aut&oacute;noma Chapingo</i>
+	 		[<i>Gender based violence on Chapingo Autonomous University students</i>].
+	 		Thesis. M&eacute;xico, Chapingo.
+	 		</a>	 		
+	 	</li>	 	
+	 </ul>
+	 </div>
+</div>
 
-    <div class="container">
-      <section id="main_content">
-        <h3>
-<a id="welcome-to-my-personal-github-page" class="anchor" href="#welcome-to-my-personal-github-page" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to my personal GitHub Page.</h3>
+<div id="projects" class="skills">
+	 <div class="container">
+	 <h3>School projects</h3>
+	 <ul>
+	 	<li> 		
+	 		
+	 	</li>	 	
+	 </ul>
+	 </div>
+</div>
+<!---->
+  <script src="js/responsiveslides.min.js"></script>
+  <script>
+    // You can also use "$(window).load(function() {"
+    $(function () {
+      $("#slider2").responsiveSlides({
+        auto: true,
+        pager: true,
+        speed: 300,
+        namespace: "callbacks",
+      });
+    });
+  </script>
+<!---->
+<!--
+<div id="testi" class="pricing">
+	 <div class="container">
+		 <div class="pricing-text">			
+			<h3>Testimonials</h3>				
+		 </div>
+		 
+		 <div class="pricing-grids">
+			 <div class="slider">
+				 <ul class="rslides" id="slider2">
+					 <li>						 
+					     <div class="col-md-6 pricing-plans">
+							  <p>Fusce ultrices, arcu nec semper facilisi. In imperdiet lacinia venenatis. Nulla justo nunc, fermentum vitae enim sit amet, 
+							  condimentum dapibus urna. Nam eget purus sed.</p>
+							  <div class="pic1">
+								 <img src="images/m1.jpg" alt=""/>
+							  </div>
+							  <div class="pic-info">
+									<h5>John Doe</h5>
+									<a href="#">CEO, THE RIVERS COMPANY</a>
+							  </div>
+							  <div class="clearfix"></div>
+						 </div>
+						 <div class="col-md-6 pricing-plans">
+							  <p>Suspendisse potenti. Nulla facilisi. In imperdiet lacinia venenatis. Nulla justo nunc, fermentum vitae enim sit amet, 
+							  condimentum dapibus urna. Nam eget purus sed.</p>
+							  <div class="pic1">
+								 <img src="images/m2.jpg" alt=""/>
+							  </div>
+							  <div class="pic-info">
+									<h5>John Doe</h5>
+									<a href="#">CEO, THE RIVERS COMPANY</a>
+							  </div>
+							  <div class="clearfix"></div>
+						 </div>						
+					      <div class="clearfix"></div>						  
+					  </li>	
+					  <li>						    
+						 <div class="col-md-6 pricing-plans">
+							  <p>Suspendisse potenti. Nulla facilisi. In imperdiet lacinia venenatis. Nulla justo nunc, fermentum vitae amet, 
+							  condimentum dapibus urna. Nam eget purus sed.</p>
+							  <div class="pic1">
+								 <img src="images/m2.jpg" alt=""/>
+							  </div>
+							  <div class="pic-info">
+									<h5>John Doe</h5>
+									<a href="#">CEO, THE RIVERS COMPANY</a>
+							  </div>
+							  <div class="clearfix"></div>
+						 </div>	
+						  <div class="col-md-6 pricing-plans">
+							  <p>Fusce ultrices, arcu nec semper facilisi. In imperdiet lacinia venenatis. Nulla justo nunc, fermentum vitae amet, 
+							  condimentum dapibus urna. Nam eget purus sed.</p>
+							  <div class="pic1">
+								 <img src="images/m1.jpg" alt=""/>
+							  </div>
+							  <div class="pic-info">
+									<h5>John Doe</h5>
+									<a href="#">CEO, THE RIVERS COMPANY</a>
+							  </div>
+							  <div class="clearfix"></div>
+						 </div>
+					      <div class="clearfix"></div>						  
+					  </li>
+					  <li>						 
+					     <div class="col-md-6 pricing-plans">
+							  <p>Duis eget urna ultricies facilisi In imperdiet lacinia venenatis. Nulla justo nunc, fermentum vitae enim sit amet, 
+							  condimentum dapibus urna. Nam eget purus sed.</p>
+							  <div class="pic1">
+								 <img src="images/m1.jpg" alt=""/>
+							  </div>
+							  <div class="pic-info">
+									<h5>John Doe</h5>
+									<a href="#">CEO, THE RIVERS COMPANY</a>
+							  </div>
+							  <div class="clearfix"></div>
+						 </div>
+						 <div class="col-md-6 pricing-plans">
+							  <p>Suspendisse potenti. Nulla facilisi. In imperdiet lacinia venenatis. Nulla justo nunc, fermentum vitae enim amet, 
+							  condimentum dapibus urna. Nam eget purus sed.</p>
+							  <div class="pic1">
+								 <img src="images/m3.jpg" alt=""/>
+							  </div>
+							  <div class="pic-info">
+									<h5>John Doe</h5>
+									<a href="#">CEO, THE RIVERS COMPANY</a>
+							  </div>
+							  <div class="clearfix"></div>
+						 </div>						
+					      <div class="clearfix"></div>						  
+					  </li>	
+				  </ul>
+			   </div>
+			   
+		  </div>  	
+	 </div>
+</div>
+-->
+<!---->
+<div id="contact" class="contact">
+	 <div class="container">
+		 <h3>Contact</h3>
+		 You can find me on Facebook or Google, just click on the icons below or send me a message to my gmail account (mandradebs).
+		 <!--
+		  <div class="map">
+			 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6139400.007323361!2d12.573610799999999!3d41.292460049999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d4fe82448dd203%3A0xe22cf55c24635e6f!2sItaly!5e0!3m2!1sen!2sin!4v1432959759826" style="border:0"></iframe>
+		 </div>		 
+		  <form>
+			 <div class="col-md-6 contact-left">
+					<input type="text" placeholder="Name" required/>
+					<input type="text" placeholder="Email" required/>
+					<input type="text" placeholder="Phone" required/>
+			 </div>
+			 <div class="col-md-6 contact-right">
+				 <textarea placeholder="Message"></textarea>
+				 <input type="submit" value="SEND"/>
+			 </div>
+			 <div class="clearfix"></div>
+		 </form>	
+		 -->
+	 </div>
+</div>
+<!---->
+<div class="footer">
+	 <div class="container">
+		 <div class="copywrite">
+			 <p> © 2015 Progress. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+		 </div>
+		 <div class="social">							
+				<a href="https://www.facebook.com/zimrilugy"><i class="facebook"></i></a>				
+				<a href="https://plus.google.com/+MarcoAndradeBarrera"><i class="google"></i></a>	
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<!--<a href="#"><i class="twitter"></i></a>-->
+				<!--<a href="#"><i class="dribble"></i></a>	-->
+				<!--<a href="#"><i class="youtube"></i></a>	-->
+		 </div>
+		 <div class="clearfix"></div>
+	 </div>
+</div>
+<!---->
+<script type="text/javascript">
+		$(document).ready(function() {
+				/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+				*/
+		$().UItoTop({ easingType: 'easeOutQuart' });
+});
+</script>
+<a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!----> 
 
-<p>Hey, my name is Marco Antonio Andrade Barrera. I'm from Mexico. I came to github when I was taking the Data Science Specialization offered in Coursera website, provided by professors of Johns Hopkins University.</p>
+<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+	try {
+    var pageTracker = _gat._getTracker("UA-64456123-1");
+    pageTracker._trackPageview();
+    } catch(err) {}
+</script>
 
-<h4>
-<a id="about-me" class="anchor" href="#about-me" aria-hidden="true"><span class="octicon octicon-link"></span></a>About me</h4>
-
-<p>Marco Antonio Andrade Barrera, B.STAT. He graduated from the Departamento de estadística, Matemática y Cómputo at the Universidad Autónoma Chapingo, México, in 2010. He is currently an engineering student at Escuela Superior de Ingeniría Mecánica y Eléctrica, en el Instituto Politécnico Nacional, México.</p>
-
-<h4>
-<a id="links" class="anchor" href="#links" aria-hidden="true"><span class="octicon octicon-link"></span></a>Links</h4>
-
-<ul>
-<li>Grupo de Estadística Social: <a href="http://www.estadistica-social-chapingo.org/GES/">http://www.estadistica-social-chapingo.org/GES/</a>
-</li>
-<li>Departamento de estadística, Matemática y Cómputo: <a href="http://www.chapingo.mx/dicifo/demyc/">http://www.chapingo.mx/dicifo/demyc/</a>
-</li>
-<li>Google Scholar <a href="https://scholar.google.com.mx/citations?user=IjqKHx8AAAAJ&amp;hl=en">https://scholar.google.com.mx/citations?user=IjqKHx8AAAAJ&amp;hl=en</a>
-</li>
-</ul>
-
-<h4>
-<a id="repos" class="anchor" href="#repos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Repos</h4>
-
-<p>The following </p>
-      </section>
-    </div>
-
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-64456123-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
-
-  </body>
+</body>
 </html>
