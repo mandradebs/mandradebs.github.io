@@ -1,4 +1,4 @@
----
+ï»¿---
 title: 'Predicting stars: application of three machine learning algorithms'
 author: "Marco Antonio Andrade Barrera^[mandradebs@gmail.com]"
 date: "November 14, 2015"
@@ -317,7 +317,7 @@ As a final remark, the precision and recall measures presented in paper are not 
 - Fan, Mingming and Maryam Khademi. 2014. Predicting a business' star in Yelp from its reviews' 
 text alone. ArXiv e-prints: 1401.0864.
 
-- Ganu, Gayatree, No´emie Elhadad y Amélie Marian. 2009. Beyond the Stars: Improving Rating Predictions using Review Text Content. Twelfth International Workshop on the Web and Databases (WebDB 2009). USA.
+- Ganu, Gayatree, NoÂ´emie Elhadad y AmÃ©lie Marian. 2009. Beyond the Stars: Improving Rating Predictions using Review Text Content. Twelfth International Workshop on the Web and Databases (WebDB 2009). USA.
 
 - Hastie, Trevor and Junyang Qian. 2014. Glmnet Vignette. Stanford. https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html.
 
