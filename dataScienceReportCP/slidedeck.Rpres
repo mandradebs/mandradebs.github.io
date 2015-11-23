@@ -1,0 +1,77 @@
+Predicting stars: application of three machine learning algorithms
+========================================================
+author: Marco Antonio Andrade Barrera
+date: November 14, 2015
+
+Introduction
+========================================================
+
+The goal of this work is explore a sampling approach to predict users' rates using its free text review
+alone.
+
+For this purpose, we used three machine learning algorithms: Support Vector Machines (SVM), Generalized Linear Model via Penalized Maximum Likelihood (GLMNET) and Maximum Entropy (MAXENTROPY).
+
+========================================================
+
+```{r echo=FALSE}
+########################################
+#In order to run this file in your local working directory, you need to make some changes. See the report.Rmd file for details.
+########################################
+setwd(dir="D:/Marco/capstone project/")
+library(ggplot2)
+load("exploratory/restaurantsReviews.RData")
+histStars <- qplot(stars, data=restaurantsReviews, geom="histogram",ylab = "Number of reviews",binwidth=0.5)
+p <- data.frame(table(restaurantsReviews$stars))$Freq/nrow(restaurantsReviews)
+```
+
+```{r echo=FALSE, fig.height=5, fig.width=15}
+print(histStars)
+```
+
+In the exploratory analysis, we calculated aproximate probabilities based on ocurrencies for each ranking. Defining $X$ as the random variable that represents the number of rating stars for a new review, based of frequencies, the distribution of $X$ is  $P(X=1)=`r round(p[1],4)`$, $P(X=2)=`r round(p[2],4)`$, $P(X=3)=`r round(p[3],4)`$, $P(X=4)=`r round(p[4],4)`$ and $P(X=5)=`r round(p[5],4)`$.
+
+Results from 50,000 reviews random sample
+========================================================
+Precision for each algorithm and category (ranking)
+```{r, echo=FALSE}
+load("exploratory/a3.RData")
+```
+
+```{r echo=FALSE, results="hide", message=FALSE, warning=FALSE}
+#table 5
+ temp <- summary(a3)
+ temp <- data.frame(t(a3@algorithm_summary)[c(1,4,7),],General=temp[c(1,4,7)])
+ rownames(temp) <- gsub("_PRECISION","",rownames(temp))
+ colnames(temp)[1:5] <- 1:5
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+ library(knitr)
+ kable(temp)
+```
+
+Recall for each algorithm and category (ranking)
+
+```{r echo=FALSE, results="hide", message=FALSE, warning=FALSE}
+#table 6
+ temp <- summary(a3)
+ temp <- data.frame(t(a3@algorithm_summary)[c(2,5,8),],General=temp[c(2,5,8)])
+ rownames(temp) <- gsub("_RECALL","",rownames(temp))
+ colnames(temp)[1:5] <- 1:5
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+ library(knitr)
+ kable(temp)
+```
+
+Conclusions
+========================================================
+- The precision and recall measures presented are not very promising.
+- In some cases, probability of guess the correct ranking is even lower that tossing a coin.
+- Other tools should be used trying to improve the results. In this regard, others tools like sentimental analysis, ensemble agreement or simply considering additional variables could help.
+
+Note: If you want to see the source files for report or this presentation, go to
+
+[Report](https://mandradebs.github.io/dataScienceReportCP/report.Rmd) or [Presentation](https://mandradebs.github.io/dataScienceReportCP/slidedeck.Rpres)

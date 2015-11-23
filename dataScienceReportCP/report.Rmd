@@ -1,0 +1,329 @@
+---
+title: 'Predicting stars: application of three machine learning algorithms'
+author: "Marco Antonio Andrade Barrera^[mandradebs@gmail.com]"
+date: "November 14, 2015"
+output:
+  pdf_document:
+    fig_caption: yes
+    keep_tex: yes
+fontsize: 12pt
+documentclass: article
+---
+
+
+```{r working directory, echo=FALSE}
+setwd(dir="D:/Marco/capstone project/")
+#classoption: twocolumn for two column article
+#header-includes: for latex packages
+#- 
+```
+
+```{r reading business data, cache=TRUE, echo=FALSE}
+#library(jsonlite)
+#business <- stream_in(file("../dataset/raw/yelp_academic_dataset_business.json"))
+#save(business,file="exploratory/business.RData") #nested data frame
+#remove(business)
+```
+
+```{r structure of business dataset, echo=FALSE, message=FALSE, warning=FALSE,eval=FALSE}
+# library(stringr)
+# library(jsonlite)
+# load("exploratory/business.Rdata")
+# b<-flatten(business)
+# b.str<-data.frame(levels=str_count(names(b),fixed(".")),names=names(b))
+# rm(b); rm(business)
+# b.str<-apply(b.str, 1, function(r){
+#   p<-as.numeric(r[1])
+#   while(p<max(b.str$levels)){
+#     r[2]<-paste(r[2],".",sep = "")
+#     p<-p+1
+#   }
+#   r[2]
+# })
+# #Structure of business data
+# b.str<-data.frame(matrix(unlist(str_split(string = b.str,pattern = fixed("."))),ncol = 3,byrow = T))
+```
+
+```{r read reviews data, cache=TRUE, echo=FALSE}
+#library(jsonlite)
+#review <- stream_in(file("../dataset/raw/yelp_academic_dataset_review.json"))
+#save(review,file="exploratory/review.RData") #nested data frame if any
+#remove(review)
+
+##########################################
+# This file can be used to reproduce the report pdf file that can be found at my github account
+# https://mandradebs.github.io/dataScienceReportCP/report.pdf
+# 
+# BUT, if you want to run this file, you must have at least the review data set in your working directory, at
+# yourworkingdirectory/dataset/raw/yelp_academic_dataset_review.json
+# 
+# also you need to uncomment the chucnks that are commented. I had to do that because loading datasets take a long in my pc.
+# 
+# If you want questions or just want to say hello!, my email is mandradebs@gmail.com.
+# 
+##########################################
+```
+
+```{r keep only restaurants, message=FALSE, echo=FALSE}
+# library(jsonlite)
+# load("exploratory/review.RData")
+# review <- flatten(review)
+# load("exploratory/business.RData")
+# business <- flatten(business)
+# 
+# #subset restaurants
+# temp <- unlist(lapply(business$categories, function(e){
+#   sum(e == "Restaurants") != 0 #If TRUE then it's a restaurant
+# }))
+# ##keep only restaurants ids
+# restaurantsIds <- business$business_id[which(temp)]
+# ##keep only restaurants in review dataset
+# restaurantsReviews <- review[which(review$business_id %in% restaurantsIds),]
+# save(restaurantsReviews,file = "exploratory/restaurantsReviews.RData")
+# rm(business);rm(restaurantsIds); rm(review); rm(restaurantsReviews)
+```
+
+```{r histogram of stars, cache=TRUE, echo=FALSE}
+library(ggplot2)
+load("exploratory/restaurantsReviews.RData")
+histStars <- qplot(stars, data=restaurantsReviews, geom="histogram",ylab = "Number of reviews",binwidth=0.5)
+
+#aproximated probabilities based on frequencies
+p <- data.frame(table(restaurantsReviews$stars))$Freq/nrow(restaurantsReviews)
+
+#rm(restaurantsReviews)
+```
+
+
+```{r using Rtexttools, echo=FALSE, cache=TRUE, warning=FALSE, message=FALSE}
+ analytics <- function(ds,s,seed,ts){
+   #ds: data set
+   #s: size of sample
+   #seed: seed for random sample
+   #ts: training proportion size
+   require(RTextTools)
+   sr <- ds[sample(1:nrow(ds),size=s,replace=F),]#sample of reviews
+   sr$stars <- factor(sr$stars)
+   doc_matrix <- create_matrix(sr$text,language = "english",
+                               removeNumbers = TRUE,
+                               stemWords = TRUE,
+                               removeSparseTerms = .998,
+                               stripWhitespace = TRUE,
+                               removeStopwords = TRUE)
+   ts <- ts*nrow(sr)#training set size 
+   container <- create_container(doc_matrix,
+                                 sr$stars,
+                                 trainSize = 1:ts, testSize = (ts+1):nrow(sr), virgin = F)
+   
+   #Training models
+   SVM  <-  train_model(container,"SVM")
+   GLMNET  <-  train_model(container,"GLMNET")
+   MAXENT  <-  train_model(container,"MAXENT")
+   #SLDA  <-  train_model(container,"SLDA")
+   #BOOSTING  <-  train_model(container,"BOOSTING")
+   #BAGGING  <-  train_model(container,"BAGGING")
+   #RF  <-  train_model(container,"RF")
+   #NNET  <-  train_model(container,"NNET")
+   #TREE  <-  train_model(container,"TREE")
+   
+   #Testing models
+   SVM_CLASSIFY <- classify_model(container, SVM)
+   GLMNET_CLASSIFY <- classify_model(container, GLMNET)
+   MAXENT_CLASSIFY <- classify_model(container, MAXENT)
+   #SLDA_CLASSIFY  <-  classify_model(container,  SLDA)
+   #BOOSTING_CLASSIFY  <-  classify_model(container,  BOOSTING)
+   #BAGGING_CLASSIFY  <-  classify_model(container,  BAGGING)
+   #RF_CLASSIFY  <-  classify_model(container,  RF)
+   #NNET_CLASSIFY  <-  classify_model(container,  NNET)
+   #TREE_CLASSIFY  <-  classify_model(container,  TREE)
+   
+   #Analytics
+   #analytics  <-  create_analytics(container,
+   #                               cbind(SVM_CLASSIFY, GLMNET_CLASSIFY, MAXENT_CLASSIFY,
+   #                                      SLDA_CLASSIFY, BOOSTING_CLASSIFY, BAGGING_CLASSIFY,
+   #                                     RF_CLASSIFY, NNET_CLASSIFY, TREE_CLASSIFY))
+   analytics  <-  create_analytics(container,
+                                   cbind(SVM_CLASSIFY, GLMNET_CLASSIFY, MAXENT_CLASSIFY))
+ }
+ #Analytics for three samples
+ #a1 <- analytics(ds = restaurantsReviews,s = 5e3, seed = 128, ts = 0.8)
+ #save(a1,file="exploratory/a1.RData")
+ load("exploratory/a1.RData")
+ #a2 <- analytics(ds = restaurantsReviews,s = 5e3, seed = 87, ts = 0.8)
+ #save(a2,file="exploratory/a2.RData")
+ load("exploratory/a2.RData")
+ #a3 <- analytics(ds = restaurantsReviews,s = 50e3, seed = 92, ts = 0.8)
+ load("exploratory/a3.RData")
+ #a4 <- analytics(ds = restaurantsReviews,s = nrow(restaurantsReviews), seed = 7, ts = 0.8)
+ #save(a4,file="exploratory/a4.RData")
+```
+
+#Introduction
+
+In recent years, supervised machine learning has become a boon in the social sciences, supplementing assistants with a computer that can classify documents with comparable accuracy (Jurka 2012, 56). This types of works are classical applications of text mining, whose methods have one thing in common: text as input information (Feinerer, Hornik & Meyer 2008, 1).
+
+Meanwhile, 'online recommendation communities, like Yelp, are valuable information sources for people' (Bakhshi, Kanuparthy & Shamma 2014, 1). However, 'user-generated reviews are usually inconsistent in terms of length, content, writing style and usefulness because they are written by unprofessional writers' (Fan & Khademi 2014, 1). Then, if we want to analyze this type of information, depth computational methods should be used in order to put the data in an usable format.
+
+Many works have tried to address questions using the Yelp Dataset Challenge. To name a few, Ganu, Elhadad and Marian (2009, 1) proposed a way to improve rating predictions using an ad-hoc and regression based method, whose results 'show that using textual information results in better general or personalized review score predictions than those derived from the numerical star ratings given by the users'. In other work, Fan and Khademi (2014) use a combination of three feature generation  methods  as  well as four machine learning models to find the best prediction result. Other researchers claim that combining topic modeling and sentiment analysis is possible to obtain better predictions.
+
+The goal of this work is explore a sampling approach to predict users' rates using its free text alone. Due to, in general, machine learning algorithms for classification require a lot of time and computer resources, this way of analysis big datasets can be more flexible. In fact, we should make a balance between the gain obtained using full datasets and the loss of quality in predictions when using just samples.
+
+#Methods and Data
+
+The dataset used in this papers is part of the Yelp Dataset Challenge, and corresponds to Round 6 of their challenge. 'Founded in 2004, Yelp is a large online recommendation community that is also a user-maintained business and service directory to help people find local business' (Bakhshi, Kanuparthy & Shamma 2014, 2). Although the available dataset contains a lot of variables with information about business, users, reviews, and tips, in this work only two variables are used: the review free text and the review's star rating, with `r format(nrow(restaurantsReviews),big.mark=",")` observations that consist of reviews about restaurants.
+
+To reach the goal of this work, three machine learning algorithm are used for classification, we selected those considering that are low-memory algorithms (Jurka et al. 2013). Actually, by discounting the exploratory analysis, the next steps for this work are based on the start-to-finish product described by Jurka et al. (2013). Using the R package RTextTools, a document term matrix is generated, removing numbers, stem words, sparse terms and stop words. Then, the three algorithms are used to train data. The size of training and testing datasets were fixed to 80% and 20%, following the ideas of others works related to review text mining (Chada & Naik 2015, 2). Finally, we present precision and recall measures. 'Precision refers to how often a case the algorithm predicts as belonging to a class actually belongs to that class' (Jurka et al. 2013, 9), whereas that recall refers to the proportion of cases in a class the algorithm correctly assigns to that class.
+
+The three trained algorithms are support vector machines (svm), glmnet and maximum entropy. The svm algorithm is a powerful technique for general (nonlinear) classification (Meyer 2015, 1). An intuitive explanation of support vector machines method can be found in Bennett & Campbell (2000). GLMNET 'fits a generalized linear model via penalized maximum likelihood'. The algorithm 'use cyclical coordinate descent, which successively optimizes the objective function over each parameter with others fixed, and cycles repeatedly until convergence' (Hastie & Qian 2014). Finally, maximum entropy is an algorithm that performance a multinomial logistic regression using an efficient C++ library that reduce memory consumption (Jurka 2012, 56).
+
+Even with those methods the training process take a long time with low resources PCs. For that reason, we adopt an approach that uses only random samples. Although it is known that 'resulting predictions tend to improve (nonlinearly) with the size of the reference dataset' (Jurka et al. 2013), in following sections we will see that taking random samples is not a bad approximation to results using the full dataset. Three samples were taken, two of 5,000 reviews (`r round(100*5e3/nrow(restaurantsReviews),2)`%) and one of 50,000 reviews (`r round(100*50e3/nrow(restaurantsReviews),2)`%).
+
+#Results
+
+As part of exploratory analysis, Figure 1 shows a histogram of the number of stars for all restaurants ($N=`r format(nrow(restaurantsReviews),big.mark=",")`$). Defining $X$ as the random variable that represents the number of rating stars for a new review, based of frequencies, the distribution of $X$ is  $P(X=1)=`r round(p[1],4)`$, $P(X=2)=`r round(p[2],4)`$, $P(X=3)=`r round(p[3],4)`$, $P(X=4)=`r round(p[4],4)`$ y $P(X=5)=`r round(p[5],4)`$. As it can be seen, if we try to predict the rating using only the more frequent category (`r which(p==max(p))`), then we expect to guess the `r round(100*max(p),2)`% of the ratings. Of course, this case it is not useful because we could not 'guess' the other categories and it is presented only for comparative purposes.
+
+```{r echo=F, fig.height=3, fig.width=5, fig.cap="Histogram of stars for restaurants"}
+print(histStars)
+```
+
+Table 1 and Table 2 show the precision of each method, based on two random samples of 5,000 reviews each one (`r round(100*5000/nrow(restaurantsReviews),2)`% of total observations).
+
+```{r echo=FALSE, results="hide", message=FALSE, warning=FALSE}
+#table 1
+ temp <- summary(a1)
+ temp <- data.frame(t(a1@algorithm_summary)[c(1,4,7),],General=temp[c(1,4,7)])
+ rownames(temp) <- gsub("_PRECISION","",rownames(temp))
+ colnames(temp)[1:5] <- 1:5
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+ library(xtable)
+ options(xtable.comment = FALSE)
+ 
+ #table1
+ print(xtable(temp,caption = "First sample. Precision of each method by number of stars ($N=5,000$)"), scalebox = 0.7)
+```
+
+```{r echo=FALSE, results="hide", message=FALSE, warning=FALSE}
+#table 2
+ temp <- summary(a2)
+ temp <- data.frame(t(a2@algorithm_summary)[c(1,4,7),],General=temp[c(1,4,7)])
+ rownames(temp) <- gsub("_PRECISION","",rownames(temp))
+ colnames(temp)[1:5] <- 1:5
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+ library(xtable)
+ options(xtable.comment = FALSE)
+ 
+#table2
+ print(xtable(temp,caption = "Second sample. Precision of each method by number of stars ($N=5,000$)"), scalebox = 0.7)
+```
+
+In both cases, SVM and GLMNET get the best although poor precision. Particularly, the algorithms can predict better reviews ranked with one star (up to 62%). We get low precision, but nevertheless the results are comparable with others methods and they are not very different or better. For example, excluding the sentiment feature added by Chada and Naik (2015), the precision of some methods used in their work were 0.57 for logistic regression, 0.51 for multinomial naive bayes and 0.48 for nearest neighbors. But in the case of Cahda and Naik (2015) there is an additional difference, they trained the models using a data set of about 700,000 entries.
+
+Table 3 and Table 4 show the recall measure of each method, for the same two random samples of 5,000 reviews.
+
+```{r echo=FALSE, results="hide", message=FALSE, warning=FALSE}
+#table 3
+ temp <- summary(a1)
+ temp <- data.frame(t(a1@algorithm_summary)[c(2,5,8),],General=temp[c(2,5,8)])
+ rownames(temp) <- gsub("_RECALL","",rownames(temp))
+ colnames(temp)[1:5] <- 1:5
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+ library(xtable)
+ options(xtable.comment = FALSE)
+ 
+#table 3
+ print(xtable(temp,caption = "First sample. Recall of each method by number of stars ($N=5,000$)"), scalebox = 0.7)
+```
+
+```{r echo=FALSE, results="hide", message=FALSE, warning=FALSE}
+#table 4
+ temp <- summary(a2)
+ temp <- data.frame(t(a2@algorithm_summary)[c(2,5,8),],General=temp[c(2,5,8)])
+ rownames(temp) <- gsub("_RECALL","",rownames(temp))
+ colnames(temp)[1:5] <- 1:5
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+ library(xtable)
+ options(xtable.comment = FALSE)
+ 
+#table 4
+ print(xtable(temp,caption = "Second sample. Recall of each method by number of stars ($N=5,000$)"), scalebox = 0.7)
+```
+
+Again, SVM is positioned in the best place, but in this case the higher recall measured is found in the five star ranking. This mean that SVM correctly assigned 66% and 70% of reviews, for first and second sample respectively, with five star ranking to that ranking.
+
+The above random samples are very small with only `r round(100*5e3/nrow(restaurantsReviews),2)`% of the total reviews. If we increase ten times the size of sample, as we can see below, the results do not change dramatically. Table 5 and Table 6 show the precision and recall measures for the three algorithms, respectively, using a random sample of 50,000 reviews, `r round(100*50e3/nrow(restaurantsReviews),2)`% of the total entries.
+
+```{r echo=FALSE, results="hide", message=FALSE, warning=FALSE}
+#table 5
+ temp <- summary(a3)
+ temp <- data.frame(t(a3@algorithm_summary)[c(1,4,7),],General=temp[c(1,4,7)])
+ rownames(temp) <- gsub("_PRECISION","",rownames(temp))
+ colnames(temp)[1:5] <- 1:5
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+ library(xtable)
+ options(xtable.comment = FALSE)
+ 
+#table 5
+ print(xtable(temp,caption = "Third sample. Precision of each method by number of stars ($N=50,000$)"), scalebox = 0.7)
+```
+
+The most favored method when we increase the size sample is MAXENTROPY, since its precision goes from about 0.40 in small samples to about 0.50 in a bigger sample. Almost the same occurs in the recall measure. The other two methods had smaller improvements.
+
+```{r echo=FALSE, results="hide", message=FALSE, warning=FALSE}
+#table 6
+ temp <- summary(a3)
+ temp <- data.frame(t(a3@algorithm_summary)[c(2,5,8),],General=temp[c(2,5,8)])
+ rownames(temp) <- gsub("_RECALL","",rownames(temp))
+ colnames(temp)[1:5] <- 1:5
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+ library(xtable)
+ options(xtable.comment = FALSE)
+ 
+#table 6
+ print(xtable(temp,caption = "Third sample. Recall of each method by number of stars ($N=50,000$)"), scalebox = 0.7)
+```
+
+#Discussion
+
+In this work three machine learning algorithms were tested with three samples of the Yeld Reviews Dataset. It was only an exercise and it is clear that here we are not discovering anything. Notwithstanding, some key point can be highlighted.
+
+The first problem that we can easily see when analysis this kind of data is the size, the amount of information. Common computers can take days training just one machine learning algorithm, and for that reason, some authors recommend clod computing services for larger datasets (Jurka et al. 2013).
+
+As a first approximation, this paper shows that using samples we can reach similar results of those obtained using the full datasets. However, in order to improve this paper, future work may explore this approach in deep, determining size of samples and the exact effect of taken just samples.
+
+As a final remark, the precision and recall measures presented in paper are not very promising. In some cases, probability of guess the correct ranking is even lower that tossing a coin. Then, other tools should be used trying to improve the results. In this regard, others tools like sentimental analysis (Chada & Naik 2015), ensemble agreement (Jurka et al. 2013) or simply considering additional variables (Bakhshi, Kanuparthy & Shamma 2014) have shown better results.
+
+#References
+
+- Bakhshi, Saeideh, Partha Kanuparthy and David A. Shamma. 2014. If it is funny, it is mean: Understanding social perceptions of Yelp online reviews. https://s.yimg.com/ge/labs/v2/uploads/main3.pdf.
+
+- Bennett, Kristin P. and Colin Campbell. 2000. Support Vector Machines: Hype or hallelujah? $\emph{SIGKDD Explorations}$ 2, n. 2, 1:13.
+
+- Chada, Rakesh and Chetan Naik. 2015. Data mining Yelp Data - Predicting rating stars from review text. http://www3.cs.stonybrook.edu/~cnaik/files/data_mining_report.pdf.
+
+- Fan, Mingming and Maryam Khademi. 2014. Predicting a business' star in Yelp from its reviews' 
+text alone. ArXiv e-prints: 1401.0864.
+
+- Ganu, Gayatree, No´emie Elhadad y Amélie Marian. 2009. Beyond the Stars: Improving Rating Predictions using Review Text Content. Twelfth International Workshop on the Web and Databases (WebDB 2009). USA.
+
+- Hastie, Trevor and Junyang Qian. 2014. Glmnet Vignette. Stanford. https://web.stanford.edu/~hastie/glmnet/glmnet_alpha.html.
+
+- Jurka, Timothy P. 2012. maxent: An R Package for low-memory multinomial logistic regression with support for semi-automated text classification. $\emph{The R Journal}$ 4, n. 1, 56:59.
+
+- Jurka, Timothy P., Loren Collingwood, Amber E. Boydstun, Emiliano Grossman, and Wouter van
+Atteveldt. 2013. RTextTools: a supervised learning package for text classification. $\emph{The R Journal}$ 5, no. 1, 6-12.
+
+- Meyer, David. 2015. Support vector machines. The interface to libsvm in package e1071. Austria: FH Technikum Wien.
