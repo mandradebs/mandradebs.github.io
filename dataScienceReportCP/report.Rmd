@@ -1,6 +1,6 @@
-﻿---
+---
 title: 'Predicting stars: application of three machine learning algorithms'
-author: "Marco Antonio Andrade Barrera^[mandradebs@gmail.com]"
+author: "Marco Antonio Andrade Barrera^[mandradebs@gmail.com. Coursera Capstone Project for Data Science Specialization. Source code files can be found here: [Report](https://mandradebs.github.io/dataScienceReportCP/report.Rmd) and [Presentation](https://mandradebs.github.io/dataScienceReportCP/slidedeck.Rpres)]."
 date: "November 14, 2015"
 output:
   pdf_document:
@@ -16,6 +16,19 @@ setwd(dir="D:/Marco/capstone project/")
 #classoption: twocolumn for two column article
 #header-includes: for latex packages
 #- 
+
+##########################################
+# This file can be used to reproduce the report pdf file that can be found at my github account
+# https://mandradebs.github.io/dataScienceReportCP/report.pdf
+# 
+# BUT, if you want to run this file, you must have at least the review data set in your working directory, at
+# yourworkingdirectory/dataset/raw/yelp_academic_dataset_review.json
+# 
+# also you need to uncomment the chucnks that are commented. I had to do that because loading datasets take a long in my pc.
+# 
+# If you want questions or just want to say hello!, my email is mandradebs@gmail.com.
+# 
+##########################################
 ```
 
 ```{r reading business data, cache=TRUE, echo=FALSE}
@@ -50,18 +63,6 @@ setwd(dir="D:/Marco/capstone project/")
 #save(review,file="exploratory/review.RData") #nested data frame if any
 #remove(review)
 
-##########################################
-# This file can be used to reproduce the report pdf file that can be found at my github account
-# https://mandradebs.github.io/dataScienceReportCP/report.pdf
-# 
-# BUT, if you want to run this file, you must have at least the review data set in your working directory, at
-# yourworkingdirectory/dataset/raw/yelp_academic_dataset_review.json
-# 
-# also you need to uncomment the chucnks that are commented. I had to do that because loading datasets take a long in my pc.
-# 
-# If you want questions or just want to say hello!, my email is mandradebs@gmail.com.
-# 
-##########################################
 ```
 
 ```{r keep only restaurants, message=FALSE, echo=FALSE}
