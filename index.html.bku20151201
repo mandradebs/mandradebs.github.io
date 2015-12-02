@@ -1,4 +1,5 @@
 <!--
+Au<!--
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -13,8 +14,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="github, ciencia de datos, data sciencia, statistics, estadï¿½stica,
-	lenguajes de programaciï¿½n, programming languages" />
+<meta name="keywords" content="github, ciencia de datos, data sciencia, statistics, estadística,
+	lenguajes de programación, programming languages" />
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <script src="js/modernizr.custom.97074.js"></script>
@@ -112,7 +113,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 </p>
 				 <p><b>2013-</b>. He is currently an 
 				 engineering student at Escuela Superior de 
-				 Ingenir&iacute;a Mec&aacute;nica y El&eacute;ctrica, Instituto 
+				 Ingenir&iacute;a Mec&aacute;nica y El&eacute;ctrica, en el Instituto 
 				 Polit&eacute;cnico Nacional, M&eacute;xico.
 				 </p>
 				 <p><b>2006-2010</b>. Bachelor degree in statistics (B.STAT). He 
@@ -343,26 +344,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 		Zamudio S&aacute;nchez, Francisco Jos&eacute;, et. al. 2014. <i>Informe estad&iacute;stico sobre desarrollo humano en M&eacute;xico: 1995-2010</i>
 	 		[<i>Statistical report on human development in Mexico: 1995-2010</i>].
 	 		M&eacute;xico, Chapingo. <br>
-	 		<a href="http://www.chapingo.mx/dicifo/demyc/apps/pubs/web/?pid=5&amp;fle=5.pdf" target="_blank">Summary</a>.
-	 		<a href="http://www.chapingo.mx/dicifo/demyc/apps/pubs/web/?pid=4&amp;fle=4.pdf" target="_blank">Executive summary</a>.
-	 		<a href="http://www.chapingo.mx/dicifo/demyc/apps/pubs/web/?pid=3&amp;fle=3.pdf" target="_blank">Full report</a>.	 		
+	 		<a href="http://www.chapingo.mx/dicifo/demyc/apps/pubs/web/?pid=5&fle=5.pdf" target="_blank">Summary</a>.
+	 		<a href="http://www.chapingo.mx/dicifo/demyc/apps/pubs/web/?pid=4&fle=4.pdf" target="_blank">Executive summary</a>.
+	 		<a href="http://www.chapingo.mx/dicifo/demyc/apps/pubs/web/?pid=3&fle=3.pdf" target="_blank">Full report</a>.	 		
 	 	</li>
 	 	<li>
-	 		
-                        Zamudio S&aacute;nchez, Francisco Jos&eacute;, Roxana Ivette Arana Ovalle, Jos&eacute; Artemio Cadena Meneses y Alejandro Corona Ambriz.
-                        2013.
-                        <a href="http://portal.chapingo.mx/dicifo/demyc/apps/pubs/web/?pid=2&amp;fle=2.pdf" target="_blank">
-		 	<i>Estudio sobre la violencia de g&eacute;nero: la otra cara de la Universidad Aut&oacute;noma Chapingo</i>
-                        [<i>Study on gender violence: the other face of the Chapingo Autonomous University</i>]</a>.
-		 	M&eacute;xico, Chapingo.	 		
+	 		<a href="http://portal.chapingo.mx/dicifo/demyc/apps/pubs/web/?pid=2&fle=2.pdf" target="_blank">
+		 		Zamudio S&aacute;nchez, Francisco Jos&eacute;, Roxana Ivette Arana Ovalle, Jos&eacute; Artemio Cadena Meneses y Alejandro Corona Ambriz. 2013.
+		 		<i>Estudio sobre la violencia de g&eacute;nero: la otra cara de la Universidad Aut&oacute;noma Chapingo</i>
+		 		[<i>Study on gender violence: the other face of the Chapingo Autonomous University</i>].
+		 		M&eacute;xico, Chapingo.
+	 		</a>
 	 	</li>
-	 	<li>	 		
+	 	<li>
+	 		<a href="http://www.researchgate.net/publication/281293678_Violencia_de_gnero_en_el_alumnado_de_la_Universidad_Autnoma_Chapingo" target="_blank">
 	 		Andrade Barrera, Marco Antonio.
 	 		2010.
-                        <a href="http://www.researchgate.net/publication/281293678_Violencia_de_gnero_en_el_alumnado_de_la_Universidad_Autnoma_Chapingo" target="_blank">
 	 		<i>Violencia de g&eacute;nero en el alumnado de la Universidad Aut&oacute;noma Chapingo</i>
-                        [<i>Gender based violence on Chapingo Autonomous University students</i>]</a>.
+	 		[<i>Gender based violence on Chapingo Autonomous University students</i>].
 	 		Thesis. M&eacute;xico, Chapingo.
+	 		</a>	 		
 	 	</li>	 	
 	 </ul>
 	 </div>
@@ -372,12 +373,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 <div class="container">
 	 <h3>School projects</h3>
 	 <ul>
-	 	<li>
-                    Andrade Barrera, Marco Antonio.
-                    2015.
-                    <a href="https://mandradebs.github.io/dataScienceReportCP/report.pdf" target="_blank">
-                        Predicting stars:  application of three machine learning algorithms</a>.
-                    Capstone Report Project. Data Science Specialization at Coursera.
+	 	<li> 		
+	 		
 	 	</li>	 	
 	 </ul>
 	 </div>
@@ -391,7 +388,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         auto: true,
         pager: true,
         speed: 300,
-        namespace: "callbacks"
+        namespace: "callbacks",
       });
     });
   </script>
@@ -553,7 +550,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!----> 
 
 <script type="text/javascript">
-	var gaJsHost = (("https:" === document.location.protocol) ? "https://ssl." : "http://www.");
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
 <script type="text/javascript">
