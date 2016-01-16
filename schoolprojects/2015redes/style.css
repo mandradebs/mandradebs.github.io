@@ -1,0 +1,61 @@
+/*
+Noviembre de 2015
+Instituto Politécnico Nacional
+Escuela Superior de Ingeniería Mecánica y Eléctrica
+Ingeniería en Comunicaciones y Electrónica
+
+Tres algoritmos para correción de errores
+
+Materia: Redes básicas
+
+Grupo: 7cv4
+
+Andrade Barrera Marco Antonio
+Valencia Fonseca Jorge
+*/
+
+/*Estilo para pantalla principal*/
+/*Fuente: http://www.w3schools.com/css/css3_borders.asp*/
+.main {
+border-radius: 25px;
+border: 2px solid gray;
+padding: 20px;
+width: 650px;
+height: 530px;
+margin: 0 auto;
+display: none;
+}
+
+.interfaz{}
+
+.tituloAlgoritmo{
+    text-align: center;
+}
+.nota{
+    font-size: 10px;
+    color: green;
+}
+
+.verificar{
+    text-align: center;
+}
+
+.log{
+    font-size: 12px;
+    font-family: monospace;
+    background-color: black;
+    width: 95%;
+    height: 75px;
+    margin: auto;
+    border: 1px solid green;
+    display: none;
+    overflow: scroll;
+}
+
+.error{
+    color: white;
+}
+
+.mensaje{
+    color: white;
+}

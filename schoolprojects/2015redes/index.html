@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!--
+Noviembre de 2015
+Instituto Politécnico Nacional
+Escuela Superior de Ingeniería Mecánica y Eléctrica
+Ingeniería en Comunicaciones y Electrónica
+
+Tres algoritmos para correción de errores
+
+Materia: Redes básicas
+
+Grupo: 7cv4
+
+Andrade Barrera Marco Antonio
+Valencia Fonseca Jorge
+-->
+<html>
+    <head>
+        <title>Corrección de errores</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="js/jquery-ui-1.11.4/jquery-ui.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="main" class="main">
+            <!-- <a href="./index.html">INICIO</a>-->
+            <table style="width: 100%;">
+                <tr>
+                    <td style="text-align: left;">
+                        <a href="./index.html">
+                            <img src="img/ipn.jpg" height="75" alt="IPN">
+                        </a>
+                    </td>
+                    <td style="text-align: center;">
+                        <h2>Instituto Politécnico Nacional</h2>
+                        <b>ESIME-ICE</b>
+                    </td>
+                    <td style="text-align: right;">
+                        <a href="./index.html">
+                            <img src="img/esime.jpg" height="65" alt="ESIME">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <div id="menu" style="display: none;">
+                <form action="" class="interfaz" onchange="actualizaInterfaz();">
+                    Seleccione el método a usar: 
+                    <input type="radio" name="algoritmos" value="vrc" checked="checked">VRC
+                    <input type="radio" name="algoritmos" value="lrc">LRC
+                    <input type="radio" name="algoritmos" value="crc">CRC
+                </form>
+            </div>
+            
+            <!-- PRESENTACIÓN -->
+            <div id="presentacion" style="padding-left: 135px; padding-right: 135px;    ">
+                <p><b>Materia</b>: Redes básicas</p>
+                <p><b>Profesor</b>: Marco Antonio Camacho González</p>
+                <p><b>Grupo</b>: 7cv4 </p><br>
+                
+                <p>
+                    <b>Presentan</b>: <br>
+                    <span style="padding-left:15px;">Andrade Barrera Marco Antonio</span><br>
+                    <span style="padding-left:15px;">Valencia Fonseca Jorge</span>
+                </p>
+                <p style="text-align:right;">Noviembre de 2015</p>
+                <p class="verificar">
+                    <button type="button" onclick="iniciar();">Continuar</button>        
+                </p>
+            </div>
+            
+            <!-- INTERFAZ PARA VRC -->
+            <div id="vrc" style="display: none;">
+                <p class="tituloAlgoritmo">VRC: Verificaciónn de redundancia vertical</p>
+                <form action="" class="interfaz">
+                    Ingrese la cadena de bits: <input type="text" id="vrc.bits">
+                    <span class="nota">El primer bit de izquierda a derecha debe
+                        ser el bit de paridad.</span><br>
+                    Seleccione el tipo de paridad:
+                        <input type="radio" name="vrc.paridad" value="par">Par
+                        <input type="radio" name="vrc.paridad" value="impar">Impar<br>
+                        <p class="verificar">
+                            <button type="button" onclick="vrcd();">Verificar</button>
+                        </p>
+                </form>
+            </div>
+            
+            <!-- INTERFAZ PARA LRC -->
+            <div id="lrc" style="display: none;">
+                <p class="tituloAlgoritmo">LRC: Verificación de redundancia longitudinal</p>
+                <form action="" class="interfaz">
+                    Ingresa la palabra a ser enviada o las cadenas de bits (7 bits) separadas por ","<br><br>
+                    Palabra:<input type="text" id="lrc.palabra">
+                    <a href="#" onclick="bitsApalabra();">
+                        <img src="img/update-icon2.png"
+                             height="20"
+                             alt="Presiona aquí para transformar los bits a palabra"
+                             title="Presiona aquí para transformar los bits a palabra">
+                    </a>
+                    Seleccionar el tipo de paridad:
+                    <input type="radio" name="lrc.paridad" value="par">Par
+                    <input type="radio" name="lrc.paridad" value="impar">Impar<br><br>
+                    
+                    Bits: <textarea rows="2" cols="70" id="lrc.bits"></textarea>
+                    <a href="#" onclick="palabraAbits();">
+                        <img src="img/update-icon2.png"
+                             height="20"
+                             alt="Presiona aquí para transformar la palabra a bits"
+                             title="Presiona aquí para transformar la palabra a bits">
+                    </a><br>
+                    LCR:<input type="text" id="lrc.secuencia"><br>
+                    Mensaje a enviar: <textarea rows="1" cols="70" id="lrc.mensaje" disabled="disabled"></textarea>
+                    <p class="verificar">
+                        <button type="button" onclick="agregarBitParidad();">Agregar bits de paridad</button>
+                        <button type="button" onclick="lcrd();">Verificar</button>
+                    </p>
+                </form>
+            </div>
+            
+            <!-- INTERFAZ PARA crc-->
+            <div id="crc" style="display: none;">
+                <p class="tituloAlgoritmo">CRC: Verificación de redundancia cíclica</p>
+                Ingresa el mensaje $M(x)$ (máx. 32 bits):
+                <table>
+                    <tr>
+                        <td>&nbsp;Bits</td>
+                        <td>
+                            <input type="text" id="crc.bitsMensaje" size="35" value="">
+                                <a href="#" onclick="uBitsFromPolMes('Mensaje');">
+                                    <img src="img/update-icon2.png"
+                                    height="20"
+                                    alt="Actualizar basándose en el polinomio"
+                                    title="Actualizar basándose en el polinomio">
+                                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;Polinomio</td>
+                        <td>
+                            <textarea rows="1" cols="60" id="crc.polMensaje"></textarea>                            
+                                <a href="#" onclick="uPolFromBitsMes('Mensaje');">
+                                    <img src="img/update-icon2.png"
+                                    height="20"
+                                    alt="Actualizar basándose en los bits"
+                                    title="Actualizar basándose en los bits">
+                                </a><br>
+                            <span class="nota">Ej. para $X^7+X^5+X^1+X^0$ escribe X^7+X^5+X^1+X^0</span>
+                        </td>
+                    </tr>
+                </table>
+                Ingresa el polinomio generador $G(x)$ (máx. 16 bits):
+                <table>
+                    <tr>
+                        <td>
+                            &nbsp;Bits                                
+                        </td>
+                        <td>
+                            <input type="text" id="crc.bitsGenerador" value="">
+                                <a href="#" onclick="uBitsFromPolGen('Generador');">
+                                    <img src="img/update-icon2.png"
+                                    height="20"
+                                    alt="Actualizar basándose en el polinomio"
+                                    title="Actualizar basándose en el polinomio">
+                                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;Polinomio</td>
+                        <td>
+                            <textarea rows="1" cols="60" id="crc.polGenerador"></textarea>                            
+                                <a href="#" onclick="uPolFromBitsGen('Generador');">
+                                    <img src="img/update-icon2.png"
+                                    height="20"
+                                    alt="Actualizar basándose en los bits"
+                                    title="Actualizar basándose en los bits">
+                                </a><br>
+                            <span class="nota">Ej. para $X^3+X^1+X^0$ escribe X^3+X^1+X^0</span>
+                        </td>
+                    </tr>
+                </table> 
+                <p class="verificar">
+                    <button type="button" onclick="crc();">Verificar</button>
+                </p>                
+            </div>
+            
+            <!-- Bloque para resultados -->
+            <div id="log" class="log">
+                
+            </div>
+        </div>
+    
+    <!-- Jquery para drag, toggle, y otros efectos-->
+    <script src="js/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
+    <script src="js/jquery-ui-1.11.4/jquery-ui.js"></script>
+    
+    <!-- librería para ecuaciones matemáticas -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });        
+    </script>  
+    <script src="js/mathjax-23/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+    <!-- librería para evaluar ecuacioens matemáticas -->
+    <script src="js/math.min.js"></script>
+    
+    <!-- Código de los algoritmos -->
+    <script src="js/main.js"></script>
+    </body>
+</html>
