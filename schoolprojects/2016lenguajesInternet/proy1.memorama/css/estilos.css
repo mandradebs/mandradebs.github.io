@@ -1,0 +1,92 @@
+@CHARSET "UTF-8";
+
+body{
+	background-color: lightgray;
+}
+
+h1,h2,h3,h4{
+	margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#principal{	
+	margin: auto;	
+	width: 1200px;	
+}
+
+#encabezado{
+	background-color: green;
+	border-color: white;
+	border-style: solid;
+	width: 100%;
+	text-align: center;
+}
+
+.logos{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#menu{
+	background-color: lightgreen;	
+	display: inline-block;
+}
+
+#menu .opcion{	
+	font-weight: bolder;
+	font-size: small;
+	color: blue;
+	padding: 0px 15px;
+	text-transform: uppercase;
+}
+
+#menu .opcion:HOVER {
+	color: red;
+	cursor: pointer;
+}
+
+.pantallaDeJuego{
+	background-color: white;
+	border-style: solid;
+	border-color: black;
+	width: 100%;
+	height: 360px;
+}
+
+#areaDeJuego{
+	display: inline-block;
+	float: left;	
+	width: 76%;
+	height: 320px;
+	margin: 5px;
+	/*border: thin solid gray;*/	
+}
+
+#areaDeInfo{
+	display: inline-block;
+	float: right;
+	width: 20%;
+	height: 320px;
+	margin: 5px;
+	border: thin solid gray;	
+}
+
+#areaDeJuego img{
+	border: medium solid gray;
+	width: 54px;
+	height: 54px;
+	margin-top: 14px;
+	margin-left: 14px;
+	margin-right: 14px;
+	cursor: pointer;
+}
+
+#areaDeJuego img:HOVER {
+	border: medium solid blue;
+}
+
+.tiempo{
+	color: #333333;
+	font-family: ‘Lucida Console’, Monaco, monospace;
+	font-size: xx-large;
+}
