@@ -13,6 +13,7 @@
  */
 
 var nImg = 40; //Total de imagenes a mostrar en el memorama
+var qImg = "img/question.png";//imagen para ocultar la verdadera imagen (el reverso de las cartas)
 
 //función para revolver un array tomada de http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffleArray(array) {
@@ -91,7 +92,7 @@ var imgActual = {
 function menuOpciones() {
 	res = "";
 	for(i=0; i<img.n(); i++){
-		res += "<span id='m" + i + "' class='opcion' onclick='clickOpcion(" + i + ");'>" + img.nombres[i] + "</span>";
+		res += "<button id='m" + i + "' class='btn btn-navy btn-border-o' onclick='clickOpcion(" + i + ");'>" + img.nombres[i] + "</button>";
 	}
 	return res;
 };
@@ -100,7 +101,7 @@ function menuOpciones() {
 function AreaDeJuegoDesconocida(){	
 	res = "";
 	for(j=0; j<nImg; j++){					
-			res += "<img id='img" + j + "' src='img/question.gif' onclick='imgClick(" + j + ");'>";		
+			res += "<img id='img" + j + "' src='" + qImg + "' onclick='imgClick(" + j + ");'>";		
 	}
 	return res;
 };
@@ -154,18 +155,29 @@ var estado = {
 };
 
 //función asociada al evento click en cada una de las opciones del menu 
-function clickOpcion(indice){	
-	//Llenar área de juego con imagenes desconocidas
-	document.getElementById("areaDeJuego").innerHTML = AreaDeJuegoDesconocida();
-	
+function clickOpcion(indice){
+		
 	//fijar conjunto de imagenes
 	imgActual.fijarLista(indice);	
 	
 	//reiniciamos parámetros generales
 	parGenerales.reset();
 	
-	//reiniciamos status
-	estado.reinicio();
+	//mostrar temporalmente todas las imágenes antes de mostrarlas
+	res = "";
+	for(j=0; j<nImg; j++){					
+			res += "<img id='img" + j + "' src='" + imgActual.lista[parGenerales.memorama[j]] + "' onclick='imgClick(" + j + ");'>";		
+	}
+	document.getElementById("areaDeJuego").innerHTML = res;
+	
+	//esperamos 3 segundos antes de ocultar todas las imágenes
+	setTimeout(function(indice){
+		//Llenar área de juego con imagenes desconocidas
+		document.getElementById("areaDeJuego").innerHTML = AreaDeJuegoDesconocida();
+		
+		//reiniciamos status
+		estado.reinicio();
+		}, 3000);
 };
 
 //función asociada al evento click en cada una de las imagenes del memorama
@@ -203,8 +215,8 @@ function imgClick(indice){
 	}
 	//hay dos imagenes abiertas
 	else{		
-		parGenerales.imgAbierta1.src = 'img/question.gif';
-		parGenerales.imgAbierta2.src = 'img/question.gif';
+		parGenerales.imgAbierta1.src = qImg;
+		parGenerales.imgAbierta2.src = qImg;
 		parGenerales.imgAbiertas = 0;
 		imgClick(indice);
 	}

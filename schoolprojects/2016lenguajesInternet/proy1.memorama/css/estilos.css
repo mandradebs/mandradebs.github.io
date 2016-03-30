@@ -28,8 +28,12 @@ h1,h2,h3,h4{
 }
 
 #menu{
-	background-color: lightgreen;	
-	display: inline-block;
+	/*background-color: lightgreen;	
+	display: inline-block;*/
+}
+
+button{
+	cursor: pointer;
 }
 
 #menu .opcion{	
@@ -82,7 +86,7 @@ h1,h2,h3,h4{
 }
 
 #areaDeJuego img:HOVER {
-	border: medium solid blue;
+	border: medium solid red;
 }
 
 .tiempo{
